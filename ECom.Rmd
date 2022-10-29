@@ -321,13 +321,54 @@ segments_res
 str(mtcars)
 ```
 ```{r}
-test <- df %>% group_by(Country) %>% 
+test <- df %>% group_by(InvoiceDate,Country) %>% 
       summarise(TotalQuantity  = sum(Quantity))
+
+test
 test %>%  
-  e_charts(Country) %>% 
+  e_charts(Country, timeline = T) %>% 
   e_map(TotalQuantity) %>%  
   e_visual_map(TotalQuantity) %>% 
   e_brush() %>% 
-  e_tooltip()
+  e_tooltip() %>% 
+  e_animation(duration = 8000) 
+
 ```
+```{r}
+test
+```
+
+
+```{r}
+
+    df %>%  
+      e_charts(Country) %>% 
+      e_map(Quantity) %>%  
+      e_visual_map(Quantity) %>% 
+      e_brush() %>% 
+      e_tooltip() %>% 
+      e_datazoom()
+```
+```{r}
+dput(test$Country)
+```
+```{r}
+iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length, timeline = TRUE) |>
+  e_line(Sepal.Width) |>
+  e_timeline_serie(
+    title = list(
+      list(text = "setosa"),
+      list(text = "versicolor"),
+      list(text = "virginica")
+    )
+  )
+```
+
+```{r}
+
+```
+
+
 

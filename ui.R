@@ -1,7 +1,7 @@
 library(shinydashboard)
 library(shiny)
 
-dashboardPage(skin = "blue",
+dashboardPage(
               
               dashboardHeader(title = "E-commerce",titleWidth = 230),
               dashboardSidebar(
@@ -23,29 +23,10 @@ dashboardPage(skin = "blue",
                            icon = icon("table")),
                   menuItem(text = "GitHub", 
                            icon = icon("github"), 
-                           href = "https://github.com/rafiff23/HumanResourceShinyWebApp")
+                           href = "https://github.com/rafiff23/ECommerce")
                 )
               ),
-              dashboardBody(id = 'test',
-                            tags$style('#test {
-                             background-color: #FFF8EA;
-              }'),
-                            tags$style(HTML("
-
-                    .box.box-solid.box-primary>.box-header {
-                    color:#fff;
-                    background:#222d32
-                    }
-
-                    .box.box-solid.box-primary{
-                    border-bottom-color:#C1A3A3;
-                    border-left-color:#C1A3A3;
-                    border-right-color:#C1A3A3;
-                    border-top-color:#C1A3A3;
-                    background:#C1A3A3
-                    }
-
-                    ")),
+              dashboardBody(uiOutput('background_change'),
                             
                             tags$head(
                               tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
@@ -68,6 +49,7 @@ dashboardPage(skin = "blue",
                                   )
                                 ),
                                 fluidPage(
+                            
                                   box(
                                     radioButtons("btn1", "Change Theme?", c("yes", "no"), selected = "no"),
                                     # radioButtons("btn2", "Show Marker", c("yes", "no"), selected = "no"),
@@ -82,16 +64,15 @@ dashboardPage(skin = "blue",
                                   
                                   box(
                                     echarts4rOutput(outputId = "plot1"),
-                                    width="9") 
+                                    width="9", status = "primary", solidHeader = T) 
                                 ),
                                 fluidPage(
                                   box(
                                     echarts4rOutput(outputId = "plot2"),
-                                    width = "12"
+                                    width = "12", status = "primary", solidHeader = T
                                   ),
                                 )
                               ),
-                              
                               # --------- Page 2 : RFM
                               tabItem(
                                 tabName = "menu_2",
@@ -99,11 +80,11 @@ dashboardPage(skin = "blue",
                                 # --------- INPUT
                                 fluidPage(
                                   box(
-                                    width = 8,
-                                    echarts4rOutput(outputId = "plot3")
+                                    width = 8,status = "primary", solidHeader = T,
+                                    echarts4rOutput(outputId = "plot3"),
+                                    
                                   ),
                                   box(
-                                    radioButtons("btn3", "Change Theme?", c("yes", "no"), selected = "no"),
                                     selectizeInput(inputId = "rfm",label= h4("Select Analysis Type : "),choices = c("Recency", "Frequency", "Monetary"), selected = "Monetary"),
                                     width = 4,
                                     background = "navy"
@@ -118,22 +99,22 @@ dashboardPage(skin = "blue",
                                            icon = icon("users"),
                                            color = "aqua",
                                            width = 4),
-                                  box(echarts4rOutput(outputId = "plot4"),width = 8),
-                                    valueBox("2.567 | 25%", 
-                                             "Total Monetary Value | Highest Segment : Champions", 
-                                             icon = icon("chart-line"),
-                                             color = "maroon",
-                                             width = 4),
-                                  box(width = 4,height = 300,
-                                      style = 'font-size:12px;',
+                                  valueBox("2.567 | 25%", 
+                                           "Total Monetary Value | Highest Segment : Champions", 
+                                           icon = icon("chart-line"),
+                                           color = "maroon",
+                                           width = 4),
+                                  box(echarts4rOutput(outputId = "plot4"),width = 8, status = "primary", solidHeader = T),
+                                  box(width = 4,height = 420,
+                                      style = 'font-size:15px;',
                                       h3("Explanation"),
                                       div(style = "text-align:justify",
                                           p("RFM is a method used for analyzing customer value. It is commonly used in database marketing 
                                             and direct marketing and has received particular attention in retail and professional services industries"),
                                           h3("RFM stands for the three dimensions:"),
-                                          p("Recency – How recently did the customer purchase?
-                                          Frequency – How often do they purchase?
-                                          Monetary Value – How much do they spend?"),
+                                          p("Recency – How recently did the customer purchase?"),
+                                          p("Frequency – How often do they purchase?"), 
+                                          p("Monetary Value – How much do they spend?"),
                                           p("Source :",
                                             a(href = "https://en.wikipedia.org/wiki/RFM_(market_research)",
                                               "Wikipedia")),
@@ -150,9 +131,14 @@ dashboardPage(skin = "blue",
                               tabItem(
                                 tabName = "menu_3",
                                 fluidRow(
-                               
-                                    echarts4rOutput(outputId = "plot5", height = 1000)
-                                  
+                                    box(
+                                  selectizeInput(inputId = "type",label= h4("Visualize by : "),choices = c("Total Quantity", "Date"), selected = "Total"),
+                                  width = 12,solidHeader = T, status = "primary"
+                                    ),
+                                  box(
+                                    echarts4rOutput(outputId = "plot5", height = 1000),
+                                    width = 12,solidHeader = T, status = "primary"
+                                  ),
                                 
                                 )
                               ),

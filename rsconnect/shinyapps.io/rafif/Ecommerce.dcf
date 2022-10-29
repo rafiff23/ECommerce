@@ -1,0 +1,13 @@
+name: Ecommerce
+title: Ecommerce
+username:
+account: rafif
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7440967
+bundleId: 6454846
+url: https://rafif.shinyapps.io/Ecommerce/
+when: 1667078903.40713
+lastSyncTime: 1667078903.40714
+asMultiple: FALSE
+asStatic: FALSE
