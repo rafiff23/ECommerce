@@ -4,10 +4,11 @@ username:
 account: rafif
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId: 7440967
-bundleId: 6454846
+appId: 7463332
+bundleId: 6456606
 url: https://rafif.shinyapps.io/Ecommerce/
-when: 1667078903.40713
-lastSyncTime: 1667078903.40714
+when: 1667154476.50858
+lastSyncTime: 1667154476.50859
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: app.R
